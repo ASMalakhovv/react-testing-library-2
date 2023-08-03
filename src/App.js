@@ -60,26 +60,15 @@
 //   );
 // }
 
-import {Link, Route, Routes} from "react-router-dom";
-import {MainPage} from "./pages/MainPage/MainPage";
-import {AboutPage} from "./pages/AboutPage/AboutPage";
-import {ErrorPage} from "./pages/ErrorPage/ErrorPage";
-import {Users} from "./users/Users";
-import {User} from "./users/User";
+import {Link} from "react-router-dom";
+import {AppRouter} from "./router/AppRouter";
+import {Navbar} from "./navbar/Navbar";
 
 const App = () => {
     return (
         <>
-            <Link to="/" data-testid="main-link">Main Page</Link>
-            <Link to="/about" data-testid="about-link">About Page</Link>
-            <Link to="users" data-testid="users-link">Users</Link>
-            <Routes>
-                <Route path="/" element={<MainPage/>}/>
-                <Route path="/about" element={<AboutPage/>}/>
-                <Route path="/users" element={<Users />}/>
-                <Route path="/users/:id" element={<User />}/>
-                <Route path="*" element={<ErrorPage/>} />
-            </Routes>
+            <Navbar />
+            <AppRouter />
         </>
     )
 }

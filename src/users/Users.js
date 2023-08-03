@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const Users = () => {
+    const navigate = useNavigate();
+
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -14,15 +16,19 @@ export const Users = () => {
         setUsers(res.data)
     }
 
+    const onClick = (id) => {
+        navigate(`/users/${id}`)
+    };
+
     return (
-        <div>
-            {users.map(user => <Link
-                to={`/users/${user.id}`}
+        <div data-testid="users-page">
+            {users.map(user => <div
+                onClick={() => onClick(user.id)}
                 key={user.id}
                 data-testid="user-item"
             >
-                {user.name}
-            </Link>
+                {user.name}{' '}
+            </div>
             )}
         </div>
     )
